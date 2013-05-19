@@ -1,0 +1,5 @@
+#/bin/bash
+
+killall c9-worker
+
+echo 'done'

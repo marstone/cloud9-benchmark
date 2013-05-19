@@ -1,0 +1,32 @@
+#/bin/bash
+
+NUM=$1
+if [ -z "$1" ]; then
+	NUM=2
+fi
+
+if [ NUM -gt 16 ]; then
+	NUM=16
+fi
+
+echo "NUM is $NUM. initiating..."
+
+for I in $(seq 1 $NUM); do
+
+	DIR=worker-output-$(printf "%02d" $I)
+
+	CMD="$(arch) -R -L $CLOUD9_ROOT/src/cloud9/Release+Asserts/bin/c9-worker \
+	--output-dir=$DIR \
+	--c9-local-port=$((19000+I)) $2 $3 $4 \
+	$CLOUD9_ROOT/src/testing_targets/out/Default/ifelse.bc"
+#    	[... other KLEE/Cloud9 parameters ...] &
+	echo setarch $CMD
+	
+	rm -rf $DIR	
+	
+	time setarch $CMD &
+
+	sleep 1
+done
+
+echo "done."
