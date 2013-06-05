@@ -1,0 +1,17 @@
+#!/bin/sh
+
+# load balancer
+BALANCER="211.80.87.10:1337"
+
+# workers
+WORKER[0]="c9.marstone.net,4"
+WORKER[1]="11.80.87.10,10"
+
+# byte code relative path, related to the samba root
+TARGET="out/Default/ifelse.bc"
+
+# samba information
+SAMBA_PATH=//c9.marstone.net/testing_targets/
+SAMBA_USER=marstone
+SAMBA_PASS=marst0ne
+

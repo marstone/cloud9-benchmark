@@ -1,7 +1,7 @@
 #define SYMBOLIC
 //#define POSIX
 
-#define SIZE (4)
+#define SIZE (7)
 
 #ifdef SYMBOLIC
 #include "klee/klee.h"
